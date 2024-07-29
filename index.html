@@ -21,12 +21,34 @@
         p {
             color: #666;
         }
+        #btc-price {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <div>
         <h1>Welcome to My Static Web App</h1>
         <p>This is a basic static website hosted on GitHub and connected to Azure Static Web Apps.</p>
+        <p id="btc-price">Loading BTC price...</p>
     </div>
+    <script>
+        async function fetchBTCPrice() {
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+                const data = await response.json();
+                const btcPrice = data.bitcoin.usd;
+                document.getElementById('btc-price').textContent = `Current BTC Price: $${btcPrice}`;
+            } catch (error) {
+                document.getElementById('btc-price').textContent = 'Error fetching BTC price.';
+                console.error('Error fetching BTC price:', error);
+            }
+        }
+
+        fetchBTCPrice();
+        setInterval(fetchBTCPrice, 60000); // Update every 60 seconds
+    </script>
 </body>
 </html>
