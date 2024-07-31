@@ -7,7 +7,7 @@
     <style>
         body {
             margin: 0;
-            height: 126vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -16,6 +16,7 @@
             background: linear-gradient(to top, #000428, #004e92);
             overflow: hidden;
             color: #fff;
+            text-align: center;
         }
         .cloud {
             position: absolute;
@@ -55,25 +56,4 @@
             color: #000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-    </style>
-</head>
-<body>
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <h1>Welcome to Yargicoglu.Cloud</h1>
-    <div class="bubble" id="btc-price">Loading...</div>
-    <script>
-        async function fetchBTCPrice() {
-            try {
-                const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
-                const data = await response.json();
-                document.getElementById('btc-price').innerText = `BTC: $${data.bpi.USD.rate}`;
-            } catch (error) {
-                document.getElementById('btc-price').innerText = 'Error loading price';
-            }
-        }
-        fetchBTCPrice();
-        setInterval(fetchBTCPrice, 60000); // Update every minute
-    </script>
-</body>
-</html>
+    </
