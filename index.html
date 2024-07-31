@@ -3,52 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yargic Cloud Web App Demo</title>
+    <title>Welcome to Yargicoglu.Cloud</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 120vh;
-            margin: 0;
-            background-color: #2F4F4F;
-            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to top, #87CEEB, #f0f8ff);
+            overflow: hidden;
+        }
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        .cloud1 {
+            width: 200px;
+            height: 200px;
+            top: 50px;
+            left: 20%;
+            animation: moveClouds 30s linear infinite;
+        }
+        .cloud2 {
+            width: 300px;
+            height: 300px;
+            top: 150px;
+            left: 60%;
+            animation: moveClouds 35s linear infinite;
+        }
+        @keyframes moveClouds {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
         }
         h1 {
-            color: #383;
+            color: #fff;
+            text-shadow: 2px 2px 4px #000;
         }
-        p {
-            color: #666;
-        }
-        #btc-price {
-            margin-top: 20px;
-            font-size: 1.2em;
-            color: #333;
+        .bubble {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #ffeb3b;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 16px;
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1>Welcome to Yargic.Cloud</h1>
-        <p>This is a basic static website hosted on GitHub and connected to Azure Static Web Apps.</p>
-        <p id="btc-price">Loading BTC price...</p>
-    </div>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <h1>Welcome to Yargicoglu.Cloud</h1>
+    <div class="bubble" id="btc-price">Loading...</div>
     <script>
         async function fetchBTCPrice() {
             try {
-                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+                const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
                 const data = await response.json();
-                const btcPrice = data.bitcoin.usd;
-                document.getElementById('btc-price').textContent = `Current BTC Price: $${btcPrice}`;
+                document.getElementById('btc-price').innerText = `BTC: $${data.bpi.USD.rate}`;
             } catch (error) {
-                document.getElementById('btc-price').textContent = 'Error fetching BTC price.';
-                console.error('Error fetching BTC price:', error);
+                document.getElementById('btc-price').innerText = 'Error loading price';
             }
         }
-
         fetchBTCPrice();
-        setInterval(fetchBTCPrice, 60000); // Update every 60 seconds
+        setInterval(fetchBTCPrice, 60000); // Update every minute
     </script>
 </body>
 </html>
