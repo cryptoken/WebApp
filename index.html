@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Yargic.Cloud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -12,62 +13,104 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background: linear-gradient(to top, #000428, #004e92);
             color: #fff;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
+
         .cloud {
             position: absolute;
-            background: #555;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            opacity: 0.5;
+            filter: blur(20px);
+            animation: moveClouds linear infinite;
         }
+
         .cloud1 {
             width: 200px;
             height: 200px;
             top: 20%;
             left: 10%;
-            animation: moveClouds 30s linear infinite;
+            animation-duration: 30s;
         }
+
         .cloud2 {
             width: 300px;
             height: 300px;
             top: 40%;
             left: 60%;
-            animation: moveClouds 35s linear infinite;
+            animation-duration: 35s;
         }
+
         @keyframes moveClouds {
-            0% { transform: translateX(0); }
+            0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
+
+        .content {
+            z-index: 1;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            text-align: center;
+        }
+
         h1 {
             text-shadow: 2px 2px 4px #000;
-            z-index: 1;
-            margin: 0;
-            position: relative;
-            padding-left: 20px;
-            text-align: center; /* Centers the text */
+            margin-bottom: 15px;
+            font-weight: 700;
         }
+
+        p {
+            margin: 10px 0;
+        }
+
+        a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
         .bubble {
             position: fixed;
-            bottom: 10px;
-            right: 10px;
+            bottom: 20px;
+            right: 20px;
             background-color: #ffeb3b;
             border-radius: 50%;
             padding: 15px;
             font-size: 16px;
             color: #000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 1;
+        }
+
+        @media (max-width: 600px) {
+            .bubble {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="cloud cloud1"></div>
     <div class="cloud cloud2"></div>
-    <h1>Welcome to Yargic.Cloud</h1>
+    <div class="content">
+        <h1>Welcome to Yargic.Cloud</h1>
+        <p>Your gateway to the cloud, where technology meets simplicity.</p>
+        <!-- Link to the About page -->
+        <p><a href="about.html">Learn more about us</a></p>
+    </div>
     <div class="bubble" id="btc-price">Loading...</div>
     <script>
         async function fetchBTCPrice() {
@@ -79,6 +122,7 @@
                 document.getElementById('btc-price').innerText = 'Error loading price';
             }
         }
+
         fetchBTCPrice();
         setInterval(fetchBTCPrice, 60000); // Update every minute
     </script>
