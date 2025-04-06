@@ -1,132 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Yargic.Cloud</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ken Yargicoglu Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to top, #000428, #004e92);
-            color: #fff;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cloud {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            filter: blur(20px);
-            animation: moveClouds linear infinite;
-        }
-
-        .cloud1 {
-            width: 200px;
-            height: 200px;
-            top: 20%;
-            left: 10%;
-            animation-duration: 30s;
-        }
-
-        .cloud2 {
-            width: 300px;
-            height: 300px;
-            top: 40%;
-            left: 60%;
-            animation-duration: 35s;
-        }
-
-        @keyframes moveClouds {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .content {
-            z-index: 1;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            text-align: center;
-        }
-
-        h1 {
-            text-shadow: 2px 2px 4px #000;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        p {
-            margin: 10px 0;
-        }
-
-        a {
-            color: #ffeb3b;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .bubble {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #ffeb3b;
-            border-radius: 50%;
-            padding: 15px;
-            font-size: 16px;
-            color: #000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        @media (max-width: 600px) {
-            .bubble {
-                bottom: 10px;
-                right: 10px;
-                padding: 10px;
-                font-size: 14px;
-            }
-        }
+      body {
+        background-image: url('ChatGPT Image Apr 6, 2025, 03_55_52 PM.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
     </style>
-</head>
-<body>
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <div class="content">
-        <h1>Welcome to Yargic.Cloud</h1>
-        <p>Your gateway to the cloud, where technology meets simplicity.</p>
-        <!-- Link to the About page -->
-        <p><a href="about.html">Learn more about us</a></p>
-        <p><a href="snake.html">Play snake</a></p>
-        <p><a href="pacman.html">Play Pac Man</a></p>
-    </div>
-    <div class="bubble" id="btc-price">Loading...</div>
-    <script>
-        async function fetchBTCPrice() {
-            try {
-                const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
-                const data = await response.json();
-                document.getElementById('btc-price').innerText = `BTC: $${data.bpi.USD.rate}`;
-            } catch (error) {
-                document.getElementById('btc-price').innerText = 'Error loading price';
-            }
-        }
+  </head>
+  <body class="text-white font-sans bg-blue-950 bg-opacity-80">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Ken Yargicoglu</h1>
+      <p class="text-xl md:text-2xl mb-6">Cloud Engineer | AI Enthusiast | Web Designer</p>
+      <a href="#projects" class="bg-white text-blue-950 px-6 py-3 rounded-full font-semibold hover:bg-gray-200">See My Work</a>
+    </section>
 
-        fetchBTCPrice();
-        setInterval(fetchBTCPrice, 60000); // Update every minute
-    </script>
-</body>
+    <!-- About Me -->
+    <section class="py-20 px-4 text-center bg-blue-900 bg-opacity-80">
+      <h2 class="text-3xl font-semibold mb-4">About Me</h2>
+      <p class="max-w-2xl mx-auto">I'm a multi-skilled technologist passionate about building secure cloud infrastructure, exploring artificial intelligence, and designing sleek, modern web interfaces. I blend IT expertise with creative design thinking to solve complex problems.</p>
+    </section>
+
+    <!-- Skills -->
+    <section class="py-20 px-4 text-center bg-opacity-80">
+      <h2 class="text-3xl font-semibold mb-8">Skills</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="bg-blue-900 p-6 rounded-xl shadow">Cloud Engineering</div>
+        <div class="bg-blue-900 p-6 rounded-xl shadow">AI & ML</div>
+        <div class="bg-blue-900 p-6 rounded-xl shadow">Web Design & Dev</div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 px-4 text-center bg-blue-900 bg-opacity-80">
+      <h2 class="text-3xl font-semibold mb-8">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div class="bg-blue-800 p-6 rounded-xl shadow">
+          <h3 class="text-xl font-bold mb-2">Cloud Infra as Code</h3>
+          <p>Automated cloud deployments using Terraform and Azure DevOps.</p>
+        </div>
+        <div class="bg-blue-800 p-6 rounded-xl shadow">
+          <h3 class="text-xl font-bold mb-2">AI Chatbot</h3>
+          <p>Conversational assistant built using Azure Cognitive Services.</p>
+        </div>
+        <div class="bg-blue-800 p-6 rounded-xl shadow">
+          <h3 class="text-xl font-bold mb-2">Portfolio Website</h3>
+          <p>This site! Designed and built to showcase my cloud, AI, and dev skills.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-20 px-4 text-center bg-opacity-80">
+      <h2 class="text-3xl font-semibold mb-4">Let's Connect</h2>
+      <p class="mb-6">Reach out on LinkedIn or shoot me an email!</p>
+      <a href="mailto:your@email.com" class="bg-white text-blue-950 px-6 py-3 rounded-full font-semibold hover:bg-gray-200">Email Me</a>
+    </section>
+  </body>
 </html>
