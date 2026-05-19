@@ -1,128 +1,850 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ken Yargicoglu Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        background-image: url('ChatGPT Image Apr 6, 2025, 03_55_52 PM.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-    </style>
-  </head>
-  <body class="text-white font-sans bg-blue-950 bg-opacity-80">
-    <!-- Hero Section -->
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">Ken Yargicoglu</h1>
-      <p class="text-xl md:text-2xl mb-6">Cloud Engineer | M365 + Azure + AI Agents | Jackie Chan Fan</p>
-      <a href="#projects" class="bg-white text-blue-950 px-6 py-3 rounded-full font-semibold hover:bg-gray-200">See My Work</a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>yargic.cloud — Ken Yargicoglu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0c08;
+      --panel: #16140e;
+      --panel-hi: #1c1a13;
+      --border: #2a261c;
+      --ink: #f3ede0;
+      --ink-dim: #cdc6b6;
+      --muted: #8a8273;
+      --accent: #ff6a3d;
+      --ok: #62d4a8;
+      --warn: #f7c948;
+      --fail: #ef6b5b;
+      --blue: #7aa9ff;
+      --violet: #b794f6;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--accent); color: #1a0d04; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .serif { font-family: 'Fraunces', serif; font-weight: 400; }
+    a { color: inherit; text-decoration: none; }
+
+    .page-grad, .page-grain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .page-grad {
+      background:
+        radial-gradient(60% 50% at 80% -10%, #ff6a3d22 0%, transparent 60%),
+        radial-gradient(50% 40% at 0% 10%, #b794f611 0%, transparent 60%);
+    }
+    .page-grain {
+      opacity: 0.07; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+    main { position: relative; z-index: 1; }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--muted);
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+
+    .dot {
+      display: inline-block; border-radius: 50%;
+      width: 8px; height: 8px; background: var(--ok);
+      box-shadow: 0 0 14px var(--ok);
+    }
+    .dot.no-glow { box-shadow: none; }
+
+    /* ---------- NAV ---------- */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 56px; border-bottom: 1px solid var(--border);
+    }
+    nav .left { display: flex; align-items: center; gap: 12px; }
+    nav .right { display: flex; align-items: center; gap: 24px; }
+    .op-pill {
+      margin-left: 8px; padding: 3px 8px 3px 6px;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #62d4a814; border: 1px solid #62d4a833; border-radius: 99px;
+    }
+    .op-pill .dot { width: 6px; height: 6px; }
+    .op-pill .mono { color: var(--ok); font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+    .nav-link { color: var(--ink-dim); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+    .search-box {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 8px 6px 12px;
+      background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+    }
+    .search-box .key {
+      padding: 2px 6px; background: var(--panel-hi);
+      border: 1px solid var(--border); border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      padding: 88px 56px 72px;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: end;
+    }
+    .hero h1 {
+      margin: 0;
+      font-family: 'Fraunces', serif; font-weight: 400;
+      font-size: 124px; line-height: 0.92; letter-spacing: -2.5px; color: var(--ink);
+    }
+    .hero h1 .italic { font-style: italic; }
+    .hero h1 .quiet { color: var(--accent); font-style: italic; }
+    .hero h1 .underline-wrap { position: relative; display: inline-block; }
+    .hero h1 .underline-wrap svg {
+      position: absolute; left: -6px; right: -6px; bottom: -2px;
+      width: calc(100% + 12px); height: 14px;
+    }
+    .hero .intro {
+      margin-top: 36px; max-width: 580px;
+      font-size: 18px; line-height: 1.55; color: var(--ink-dim);
+    }
+    .hero .intro strong { color: var(--ink); font-weight: 600; }
+    .hero .intro .accent-ink { color: var(--ink); }
+    .cert-row { margin-top: 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .cert {
+      padding: 4px 10px; background: var(--panel-hi);
+      border: 1px solid var(--border); border-radius: 99px;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .cert .dot { width: 5px; height: 5px; box-shadow: none; }
+    .cert .mono { color: var(--ink-dim); font-size: 11px; letter-spacing: 0.5px; }
+    .cert.accent { background: #ff6a3d14; border-color: #ff6a3d55; }
+    .cert.accent .dot { background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+    .cert.accent .mono { color: var(--accent); }
+    .cta-row { margin-top: 32px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 12px 20px; background: var(--accent); color: #1a0d04;
+      border-radius: 8px; font-weight: 600; font-size: 14px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-secondary {
+      padding: 12px 20px; background: transparent; color: var(--ink);
+      border: 1px solid var(--border); border-radius: 8px; font-weight: 500; font-size: 14px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .cta-row .hint { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin-left: 8px; }
+    .cta-row .hint .key {
+      color: var(--ink); padding: 2px 6px; background: var(--panel);
+      border: 1px solid var(--border); border-radius: 4px;
+    }
+
+    /* status panel in hero */
+    .hero-status {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+      padding: 22px; margin-bottom: 10px;
+    }
+    .hero-status .head {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;
+    }
+    .hero-status .head .mono { color: var(--ok); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    .stat-cell {
+      padding: 12px 14px; background: var(--panel-hi);
+      border: 1px solid var(--border); border-radius: 8px;
+    }
+    .stat-cell .mono { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-cell .val {
+      font-family: 'Fraunces', serif; font-size: 28px; margin-top: 2px; letter-spacing: -0.5px;
+    }
+    .console {
+      padding: 14px; background: #0a0905; border: 1px solid var(--border);
+      border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.7;
+    }
+    .console .row { color: var(--ink-dim); }
+    .console .row.head-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .console .row.head-row .lbl { color: var(--muted); }
+    .console .ok { color: var(--ok); }
+    .console .blue { color: var(--blue); }
+    .console .muted { color: var(--muted); }
+    .console .ink { color: var(--ink); }
+    .console .caret {
+      display: inline-block; width: 8px; height: 12px; background: var(--blue);
+      margin-left: 4px; vertical-align: middle; animation: blink 1s steps(2) infinite;
+    }
+    @keyframes blink { 0%,50% { opacity: 1; } 50.1%,100% { opacity: 0; } }
+
+    /* ---------- SECTION TITLE ---------- */
+    .section { position: relative; padding: 0 56px 80px; }
+    .section-title { display: flex; align-items: baseline; gap: 18px; margin-bottom: 22px; flex-wrap: wrap; }
+    .section-title .num { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+    .section-title h2 {
+      margin: 0; font-family: 'Fraunces', serif; font-weight: 400;
+      font-size: 40px; line-height: 1; color: var(--ink); letter-spacing: -0.5px;
+    }
+    .section-title .sub { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+    /* ---------- SKILLS ---------- */
+    .skills-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 16px; }
+    .skill {
+      padding: 22px; background: var(--panel); border: 1px solid var(--border);
+      border-radius: 12px; display: flex; flex-direction: column;
+    }
+    .skill.featured {
+      padding: 24px;
+      background: linear-gradient(135deg, var(--panel) 0%, #1c1408 100%);
+      border-color: #ff6a3d55; position: relative; overflow: hidden;
+    }
+    .skill.featured .glow {
+      position: absolute; right: -30px; top: -30px; width: 140px; height: 140px;
+      background: radial-gradient(circle, #ff6a3d33 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .skill .title { font-family: 'Fraunces', serif; font-size: 24px; color: var(--ink); line-height: 1; margin-bottom: 4px; letter-spacing: -0.3px; }
+    .skill.featured .title { font-size: 32px; margin-bottom: 6px; }
+    .skill .sub {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
+      margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .skill .desc { color: var(--ink-dim); font-size: 14px; line-height: 1.5; margin-bottom: 16px; }
+    .skill .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; position: relative; }
+    .skill .tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      padding: 4px 9px; background: var(--panel-hi); border-radius: 4px; color: var(--ink-dim);
+    }
+    .skill.featured .tag {
+      background: #1a130a; border: 1px solid #ff6a3d33; color: var(--ink);
+    }
+    .skill .focus-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; position: relative; }
+    .skill .focus-row .mono { color: var(--accent); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .skill .focus-row .dot { background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+
+    /* ---------- SERVICES TABLE ---------- */
+    .services {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .services .row {
+      display: grid; grid-template-columns: 280px 1fr 100px 110px 60px;
+      padding: 20px 22px; border-bottom: 1px solid var(--border);
+      align-items: center; gap: 18px;
+    }
+    .services .row:last-child { border-bottom: none; }
+    .services .row.head {
+      padding: 12px 22px; background: var(--panel-hi);
+    }
+    .services .endpoint .name {
+      font-family: 'Fraunces', serif; font-size: 24px; color: var(--ink); line-height: 1;
+    }
+    .services .endpoint .desc { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+    .services .avail { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-dim); text-align: right; }
+    .services .status { display: flex; align-items: center; gap: 8px; justify-content: flex-end; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+    .services .status .dot { width: 7px; height: 7px; }
+    .services .arrow { font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 16px; text-align: right; }
+    .spark { display: flex; gap: 2px; height: 22px; align-items: stretch; }
+    .spark > div { flex: 1; border-radius: 1px; opacity: 0.9; }
+
+    /* ---------- PROJECTS ---------- */
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .project {
+      padding: 22px; background: var(--panel); border: 1px solid var(--border);
+      border-radius: 12px; display: flex; flex-direction: column; gap: 10px;
+      position: relative; transition: border-color .2s;
+    }
+    .project.featured {
+      background: linear-gradient(135deg, var(--panel) 0%, #1c1408 100%);
+      border-color: #ff6a3d55;
+    }
+    .project .head { display: flex; align-items: flex-start; justify-content: space-between; }
+    .project .head .name-wrap { display: flex; align-items: center; gap: 10px; }
+    .project .head .name-wrap .dot { width: 6px; height: 6px; }
+    .project .name { font-family: 'Fraunces', serif; font-size: 26px; color: var(--ink); line-height: 1; letter-spacing: -0.5px; }
+    .project .status-pill {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted);
+      padding: 3px 7px; border: 1px solid var(--border); border-radius: 4px;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .project .desc { color: var(--ink-dim); font-size: 14px; line-height: 1.5; flex: 1; }
+    .project .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; align-items: center; }
+    .project .stack .pill {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      padding: 2px 7px; background: var(--panel-hi); border-radius: 3px; color: var(--muted);
+    }
+    .project .stack .repo {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); margin-left: auto;
+    }
+
+    /* ---------- VIDEOS ---------- */
+    .videos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .video-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .video-frame { aspect-ratio: 16 / 9; width: 100%; }
+    .video-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    /* ---------- INCIDENT LOG / NOW ---------- */
+    .split { display: grid; grid-template-columns: 1.5fr 1fr; gap: 28px; }
+    .incident-row {
+      display: grid; grid-template-columns: 120px 1fr 80px 80px 20px;
+      padding: 20px 0; border-bottom: 1px solid var(--border); align-items: center; gap: 16px;
+    }
+    .incident-row:first-child { border-top: 1px solid var(--border); }
+    .incident-row .date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+    .incident-row .title-wrap { display: flex; align-items: center; gap: 12px; }
+    .incident-row .title-wrap .dot { width: 6px; height: 6px; box-shadow: none; }
+    .incident-row .title-text {
+      font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink);
+      line-height: 1.2; letter-spacing: -0.3px;
+    }
+    .incident-row .tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
+      padding: 3px 7px; border: 1px solid var(--border); border-radius: 4px;
+      text-align: center; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .incident-row .read { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); text-align: right; }
+    .incident-row .arrow { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--muted); text-align: right; }
+
+    .now-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+    .now-card .head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .now-card .head .place { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+    .now-row {
+      padding: 14px 0; border-top: 1px solid var(--border);
+      display: flex; gap: 14px;
+    }
+    .now-row .tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      width: 90px; padding-top: 3px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;
+    }
+    .now-row .body { color: var(--ink-dim); font-size: 14px; line-height: 1.5; }
+
+    /* ---------- JACKIE CHAN CARD ---------- */
+    .jc-card {
+      background: linear-gradient(135deg, var(--panel) 0%, #1a160d 100%);
+      border: 1px solid var(--border); border-radius: 12px; padding: 36px;
+      display: grid; grid-template-columns: 120px 1fr auto; gap: 32px; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .jc-card .big-quote {
+      position: absolute; right: -40px; top: -40px; font-size: 280px;
+      opacity: 0.04; font-family: 'Fraunces', serif; color: var(--accent); line-height: 1;
+    }
+    .jc-avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--warn) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 60px; position: relative; box-shadow: 0 0 40px #ff6a3d44;
+    }
+    .jc-quote {
+      font-family: 'Fraunces', serif; font-size: 32px; line-height: 1.25; color: var(--ink);
+      font-style: italic; letter-spacing: -0.3px;
+    }
+    .jc-meta { margin-top: 14px; display: flex; align-items: center; gap: 10px; }
+    .jc-meta .mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+    .jc-meta .roll { color: var(--accent); }
+    .jc-health { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+    .jc-health .dot { width: 10px; height: 10px; }
+    .jc-health .ok-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ok); letter-spacing: 1px; text-transform: uppercase; }
+    .jc-health .ms { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      position: relative; padding: 40px 56px 48px;
+      border-top: 1px solid var(--border);
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px;
+    }
+    footer .brand .mono { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink); font-weight: 600; }
+    footer .brand .blurb { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.5; max-width: 360px; }
+    footer .brand .blurb .ink { color: var(--ink-dim); }
+    footer .col .eyebrow { margin-bottom: 12px; display: block; }
+    footer .col .link { padding: 4px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-dim); }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding: 64px 32px 56px; }
+      .hero h1 { font-size: 88px; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid, .videos-grid { grid-template-columns: 1fr 1fr; }
+      .split { grid-template-columns: 1fr; }
+      .section, footer, nav { padding-left: 32px; padding-right: 32px; }
+      .services .row { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .services .row .spark-cell, .services .row .avail, .services .row .arrow { display: none; }
+    }
+    @media (max-width: 680px) {
+      nav { flex-direction: column; gap: 14px; padding: 18px 20px; }
+      nav .right { gap: 14px; flex-wrap: wrap; justify-content: center; }
+      .hero { padding: 40px 20px 40px; }
+      .hero h1 { font-size: 56px; letter-spacing: -1.5px; }
+      .skills-grid, .projects-grid, .videos-grid { grid-template-columns: 1fr; }
+      .section, footer { padding-left: 20px; padding-right: 20px; }
+      .section-title h2 { font-size: 30px; }
+      .jc-card { grid-template-columns: 1fr; padding: 24px; gap: 18px; }
+      .jc-health { align-items: flex-start; }
+      .incident-row { grid-template-columns: 1fr; gap: 6px; }
+      .incident-row .read, .incident-row .arrow, .incident-row .tag { text-align: left; }
+      footer { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grad"></div>
+  <div class="page-grain"></div>
+
+  <main>
+    <!-- ─── NAV ─── -->
+    <nav>
+      <div class="left">
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+          <circle cx="6" cy="7" r="2.5" fill="#ff6a3d" />
+          <circle cx="14" cy="5" r="1.8" fill="#f3ede0" />
+          <circle cx="17" cy="13" r="2.2" fill="#62d4a8" />
+          <circle cx="9" cy="15" r="1.6" fill="#f3ede0" />
+          <path d="M6 7 L14 5 L17 13 L9 15 Z" fill="none" stroke="#8a8273" stroke-width="0.6" />
+        </svg>
+        <span class="mono" style="font-size:14px; font-weight:600;">yargic.cloud</span>
+        <span class="op-pill">
+          <span class="dot"></span>
+          <span class="mono">operational</span>
+        </span>
+      </div>
+      <div class="right">
+        <a class="nav-link" href="#about">/about</a>
+        <a class="nav-link" href="#projects">/projects</a>
+        <a class="nav-link" href="#writing">/writing</a>
+        <a class="nav-link" href="#now">/now</a>
+        <div class="search-box">
+          <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="7" cy="7" r="5" stroke="#8a8273" stroke-width="1.5" fill="none" />
+            <path d="M11 11 L14 14" stroke="#8a8273" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <span class="mono" style="font-size:12px; color: var(--muted);">search & jump</span>
+          <span class="key">⌘ K</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero" id="about">
+      <div>
+        <div class="eyebrow" style="margin-bottom: 28px;">◇ M365 · Azure · AI systems · jackie chan</div>
+        <h1>
+          building <span class="quiet">quiet</span><br />
+          things in <span class="italic">loud</span><br />
+          <span class="underline-wrap">
+            clouds.
+            <svg viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M 4 8 Q 60 2, 130 8 T 296 8" fill="none" stroke="#ff6a3d" stroke-width="3" stroke-linecap="round" />
+            </svg>
+          </span>
+        </h1>
+        <p class="intro">
+          I'm <strong>Ken Yargicoglu</strong> — a cloud engineer working where Microsoft 365, Azure, and modern AI meet. <span class="accent-ink">Eight years deep</span> in M365: Intune, SharePoint, Exchange, Entra, Fortinet, and the migrations no-one wants to do. Currently building agent systems on Claude, Copilot Studio, and a local-LLM home lab.
+        </p>
+        <div class="cert-row">
+          <span class="cert"><span class="dot no-glow"></span><span class="mono">AZ-104</span></span>
+          <span class="cert"><span class="dot no-glow"></span><span class="mono">AZ-305</span></span>
+          <span class="cert"><span class="dot no-glow"></span><span class="mono">AI-102</span></span>
+          <span class="mono" style="font-size:12px; color: var(--muted);">→ studying</span>
+          <span class="cert accent"><span class="dot"></span><span class="mono">Claude Architect</span></span>
+        </div>
+        <div class="cta-row">
+          <a class="btn-primary" href="#projects">See projects <span>→</span></a>
+          <a class="btn-secondary" href="#writing">Read writing</a>
+          <span class="hint">or hit <span class="key">⌘ K</span></span>
+        </div>
+      </div>
+
+      <aside class="hero-status">
+        <div class="head">
+          <span class="eyebrow">ken@cloud · live</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span class="dot"></span>
+            <span class="mono">all systems ok</span>
+          </div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-cell">
+            <div class="mono">yrs · M365</div>
+            <div class="val" style="color: var(--ink);">8</div>
+          </div>
+          <div class="stat-cell">
+            <div class="mono">azure certs</div>
+            <div class="val" style="color: var(--ink);">3</div>
+          </div>
+          <div class="stat-cell">
+            <div class="mono">lab nodes</div>
+            <div class="val" style="color: var(--ok);">2</div>
+          </div>
+          <div class="stat-cell">
+            <div class="mono">JC quotes</div>
+            <div class="val" style="color: var(--accent);">∞</div>
+          </div>
+        </div>
+        <div class="console">
+          <div class="row head-row"><span class="lbl">~ now running</span><span class="blue">whisper-pipeline v0.3</span></div>
+          <div class="row"><span class="ok">✓</span> ollama · llama3.1, mistral</div>
+          <div class="row"><span class="ok">✓</span> docker containers up (7)</div>
+          <div class="row"><span class="blue">⠋</span> transcribing <span class="ink">video → markdown</span><span class="caret"></span></div>
+          <div class="row muted">○ agent stack · idle</div>
+        </div>
+      </aside>
     </section>
 
-    <!-- About Me -->
-    <section class="py-20 px-4 text-center bg-blue-900 bg-opacity-80">
-      <h2 class="text-3xl font-semibold mb-4">About Me</h2>
-      <p class="max-w-2xl mx-auto">Cloud engineer working at the intersection of Microsoft 365, Azure, and modern AI systems. Eight years deep in M365 — Intune, SharePoint, Exchange, Entra, Fortinet, and migrations. Currently building agent systems with Claude, Copilot Studio, and local LLMs on a home lab running Ollama and Docker. AZ-104, AZ-305, and AI-102 certified; studying toward Claude Certified Architect.</p>
-    </section>
+    <!-- ─── SKILLS ─── -->
+    <section class="section">
+      <div class="section-title">
+        <span class="num">§ 01</span>
+        <h2>Skills</h2>
+        <span class="sub">// stack · 8 years deep</span>
+      </div>
 
-    <!-- Skills -->
-    <section class="py-20 px-4 text-center bg-opacity-80">
-      <h2 class="text-3xl font-semibold mb-8">Skills</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        <div class="bg-blue-900 p-6 rounded-xl shadow text-left">
-          <h3 class="text-xl font-bold mb-3 text-center">Microsoft 365</h3>
-          <ul class="space-y-1 text-sm list-disc list-inside">
-            <li>Intune</li>
-            <li>SharePoint</li>
-            <li>Exchange</li>
-            <li>Entra</li>
-            <li>Fortinet</li>
-            <li>Tenant migrations</li>
-          </ul>
+      <div class="skills-grid">
+        <div class="skill featured">
+          <div class="glow"></div>
+          <div class="focus-row">
+            <span class="dot"></span>
+            <span class="mono">focus</span>
+          </div>
+          <div class="title">AI Systems</div>
+          <div class="desc">Building agent workflows and integrating LLMs into real Microsoft 365 environments.</div>
+          <div class="tags">
+            <span class="tag">Claude</span>
+            <span class="tag">Copilot Studio</span>
+            <span class="tag">multi-agent</span>
+            <span class="tag">Azure AI</span>
+            <span class="tag">Ollama</span>
+            <span class="tag">Whisper</span>
+          </div>
         </div>
-        <div class="bg-blue-900 p-6 rounded-xl shadow text-left">
-          <h3 class="text-xl font-bold mb-3 text-center">Azure</h3>
-          <ul class="space-y-1 text-sm list-disc list-inside">
-            <li>AZ-104 certified</li>
-            <li>AZ-305 certified</li>
-            <li>AI-102 certified</li>
-            <li>Studying: Claude Certified Architect</li>
-          </ul>
+
+        <div class="skill">
+          <div class="title">Microsoft 365</div>
+          <div class="sub">identity, endpoints, mail</div>
+          <div class="tags">
+            <span class="tag">Intune</span>
+            <span class="tag">SharePoint</span>
+            <span class="tag">Exchange</span>
+            <span class="tag">Entra</span>
+            <span class="tag">migrations</span>
+          </div>
         </div>
-        <div class="bg-blue-900 p-6 rounded-xl shadow text-left">
-          <h3 class="text-xl font-bold mb-3 text-center">AI Systems</h3>
-          <ul class="space-y-1 text-sm list-disc list-inside">
-            <li>Claude</li>
-            <li>Copilot Studio</li>
-            <li>Multi-agent architectures</li>
-            <li>Azure AI services</li>
-            <li>Local LLMs (Ollama, Whisper)</li>
-          </ul>
+        <div class="skill">
+          <div class="title">Azure</div>
+          <div class="sub">AZ-104 · AZ-305 · AI-102</div>
+          <div class="tags">
+            <span class="tag">Functions</span>
+            <span class="tag">Storage</span>
+            <span class="tag">Key Vault</span>
+            <span class="tag">AKS</span>
+            <span class="tag">Bicep</span>
+          </div>
+        </div>
+        <div class="skill">
+          <div class="title">Network</div>
+          <div class="sub">edge & security</div>
+          <div class="tags">
+            <span class="tag">Fortinet</span>
+            <span class="tag">firewalls</span>
+            <span class="tag">conditional access</span>
+            <span class="tag">DNS</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="py-20 px-4 text-center bg-blue-900 bg-opacity-80">
-      <h2 class="text-3xl font-semibold mb-8">Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        <div class="bg-blue-800 p-6 rounded-xl shadow">
-          <h3 class="text-xl font-bold mb-2">Local AI Lab (2025)</h3>
-          <p>Two-PC home setup running Ollama, Docker, and a local Whisper transcription pipeline that turns video into structured markdown.</p>
+    <!-- ─── SERVICES ─── -->
+    <section class="section">
+      <div class="section-title">
+        <span class="num">§ 02</span>
+        <h2>Services</h2>
+        <span class="sub">// the pages of this site, as a status board</span>
+      </div>
+
+      <div class="services">
+        <div class="row head">
+          <span class="eyebrow">endpoint</span>
+          <span class="eyebrow">uptime · 90d</span>
+          <span class="eyebrow" style="text-align:right;">availability</span>
+          <span class="eyebrow" style="text-align:right;">status</span>
+          <span></span>
         </div>
-        <div class="bg-blue-800 p-6 rounded-xl shadow">
-          <h3 class="text-xl font-bold mb-2">Cloud Infra as Code</h3>
-          <p>Automated Azure deployments using Terraform and Azure DevOps.</p>
+        <div class="row" data-svc='{"sev":"ok","seed":3}'>
+          <div class="endpoint"><div class="name">/about</div><div class="desc">who I am, the short version</div></div>
+          <div class="spark-cell"><div class="spark" data-sev="ok" data-seed="3"></div></div>
+          <div class="avail">100.00%</div>
+          <div class="status" style="color: var(--ok);"><span class="dot" style="background: var(--ok);"></span><span>operational</span></div>
+          <div class="arrow">→</div>
         </div>
-        <div class="bg-blue-800 p-6 rounded-xl shadow">
-          <h3 class="text-xl font-bold mb-2">Portfolio Website</h3>
-          <p>This site! Designed and built to showcase my cloud and AI work.</p>
+        <div class="row" data-svc='{"sev":"ok","seed":5}'>
+          <div class="endpoint"><div class="name">/projects</div><div class="desc">14 things, mostly cloud</div></div>
+          <div class="spark-cell"><div class="spark" data-sev="ok" data-seed="5"></div></div>
+          <div class="avail">99.96%</div>
+          <div class="status" style="color: var(--ok);"><span class="dot" style="background: var(--ok);"></span><span>operational</span></div>
+          <div class="arrow">→</div>
         </div>
-        <div class="bg-blue-800 p-6 rounded-xl shadow flex flex-col">
-          <h3 class="text-xl font-bold mb-2">My GitHub</h3>
-          <p class="mb-4">Check out more of my projects on GitHub.</p>
-          <a href="https://github.yargic.cloud" target="_blank"
-             class="mt-auto inline-block bg-white text-blue-950 px-4 py-2 rounded-full font-semibold hover:bg-gray-200 self-center">
-            Visit GitHub →
-          </a>
+        <div class="row" data-svc='{"sev":"warn","seed":7}'>
+          <div class="endpoint"><div class="name">/writing</div><div class="desc">42 posts · RSS feed</div></div>
+          <div class="spark-cell"><div class="spark" data-sev="warn" data-seed="7"></div></div>
+          <div class="avail">98.41%</div>
+          <div class="status" style="color: var(--warn);"><span class="dot" style="background: var(--warn); box-shadow: 0 0 14px var(--warn);"></span><span>degraded</span></div>
+          <div class="arrow">→</div>
+        </div>
+        <div class="row" data-svc='{"sev":"ok","seed":11}'>
+          <div class="endpoint"><div class="name">/now</div><div class="desc">auto-deploys weekly-ish</div></div>
+          <div class="spark-cell"><div class="spark" data-sev="ok" data-seed="11"></div></div>
+          <div class="avail">99.99%</div>
+          <div class="status" style="color: var(--ok);"><span class="dot" style="background: var(--ok);"></span><span>operational</span></div>
+          <div class="arrow">→</div>
+        </div>
+        <div class="row" data-svc='{"sev":"ok","seed":13}'>
+          <div class="endpoint"><div class="name">/jackie-chan-corner</div><div class="desc">critical-tier service</div></div>
+          <div class="spark-cell"><div class="spark" data-sev="ok" data-seed="13"></div></div>
+          <div class="avail">100.00%</div>
+          <div class="status" style="color: var(--ok);"><span class="dot" style="background: var(--ok);"></span><span>operational</span></div>
+          <div class="arrow">→</div>
         </div>
       </div>
     </section>
 
-    <!-- Videos -->
-    <section id="videos" class="py-20 px-4 text-center bg-opacity-80">
-      <h2 class="text-3xl font-semibold mb-8">Videos</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <div class="aspect-video rounded-xl overflow-hidden shadow">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/pjv8VCvHS7g"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <!-- ─── PROJECTS ─── -->
+    <section class="section" id="projects">
+      <div class="section-title">
+        <span class="num">§ 03</span>
+        <h2>Selected projects</h2>
+        <span class="sub">// cmd-K to see all</span>
+      </div>
+      <div class="projects-grid">
+        <article class="project featured">
+          <div class="head">
+            <div class="name-wrap"><span class="dot" style="background: var(--accent); box-shadow: 0 0 14px var(--accent);"></span><span class="name">local-ai-lab</span></div>
+            <span class="status-pill">active · 2025</span>
+          </div>
+          <div class="desc">Two-PC home setup running Ollama and Docker, with a Whisper transcription pipeline that turns video into structured markdown.</div>
+          <div class="stack">
+            <span class="pill">ollama</span><span class="pill">docker</span><span class="pill">whisper</span><span class="pill">python</span>
+            <a class="repo" href="#">repo →</a>
+          </div>
+        </article>
+        <article class="project">
+          <div class="head">
+            <div class="name-wrap"><span class="dot" style="background: var(--ok);"></span><span class="name">video-to-md</span></div>
+            <span class="status-pill">shipped</span>
+          </div>
+          <div class="desc">Drop in an mp4, get back clean structured markdown with chapter headings and speaker turns. The lab's flagship pipeline.</div>
+          <div class="stack">
+            <span class="pill">whisper</span><span class="pill">python</span><span class="pill">ffmpeg</span>
+            <a class="repo" href="#">repo →</a>
+          </div>
+        </article>
+        <article class="project">
+          <div class="head">
+            <div class="name-wrap"><span class="dot" style="background: var(--warn); box-shadow: 0 0 14px var(--warn);"></span><span class="name">agent-router</span></div>
+            <span class="status-pill">beta</span>
+          </div>
+          <div class="desc">A small orchestration layer that picks between Claude and Copilot Studio agents based on tool affinity and cost.</div>
+          <div class="stack">
+            <span class="pill">claude</span><span class="pill">copilot-studio</span><span class="pill">ts</span>
+            <a class="repo" href="#">repo →</a>
+          </div>
+        </article>
+        <article class="project">
+          <div class="head">
+            <div class="name-wrap"><span class="dot" style="background: var(--ok);"></span><span class="name">m365-toolkit</span></div>
+            <span class="status-pill">shipped</span>
+          </div>
+          <div class="desc">Day-to-day scripts for the M365 estate — Entra audits, Intune policy diffs, SharePoint cleanups. Boring, useful.</div>
+          <div class="stack">
+            <span class="pill">powershell</span><span class="pill">graph-api</span>
+            <a class="repo" href="#">repo →</a>
+          </div>
+        </article>
+        <article class="project">
+          <div class="head">
+            <div class="name-wrap"><span class="dot" style="background: var(--ok);"></span><span class="name">entra-audit</span></div>
+            <span class="status-pill">shipped</span>
+          </div>
+          <div class="desc">Pulls conditional-access policies + role assignments into a readable diff so audit week stops being a panic.</div>
+          <div class="stack">
+            <span class="pill">python</span><span class="pill">graph-api</span>
+            <a class="repo" href="#">repo →</a>
+          </div>
+        </article>
+        <article class="project">
+          <div class="head">
+            <div class="name-wrap"><span class="dot" style="background: var(--ok);"></span><span class="name">jc-bot</span></div>
+            <span class="status-pill">shipped</span>
+          </div>
+          <div class="desc">A bot that posts a random Jackie Chan quote every morning. Critical infra.</div>
+          <div class="stack">
+            <span class="pill">python</span><span class="pill">cron</span>
+            <a class="repo" href="#">repo →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ─── VIDEOS ─── -->
+    <section class="section" id="videos">
+      <div class="section-title">
+        <span class="num">§ 04</span>
+        <h2>Videos</h2>
+        <span class="sub">// recordings &amp; demos</span>
+      </div>
+      <div class="videos-grid">
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/pjv8VCvHS7g" title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
-        <div class="aspect-video rounded-xl overflow-hidden shadow">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/9AkiOpIGp5Y"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/9AkiOpIGp5Y" title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
-        <div class="aspect-video rounded-xl overflow-hidden shadow">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/Gya0hZYPA1k"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/Gya0hZYPA1k" title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section class="py-20 px-4 text-center bg-opacity-80">
-      <h2 class="text-3xl font-semibold mb-4">Let's Connect</h2>
-      <p class="mb-6">Reach out on LinkedIn or shoot me an email!</p>
-      <a href="mailto:ken@yargic.cloud" class="bg-white text-blue-950 px-6 py-3 rounded-full font-semibold hover:bg-gray-200">Email Me</a>
+    <!-- ─── INCIDENT LOG + /NOW ─── -->
+    <section class="section split" id="writing">
+      <div>
+        <div class="section-title">
+          <span class="num">§ 05</span>
+          <h2>Incident log</h2>
+          <span class="sub">// a.k.a. blog · RSS</span>
+        </div>
+        <div>
+          <div class="incident-row">
+            <span class="date">may 12 · 2026</span>
+            <div class="title-wrap"><span class="dot no-glow" style="background: var(--warn);"></span><span class="title-text">Building agents inside Copilot Studio: what bends, what breaks</span></div>
+            <span class="tag">ai</span><span class="read">11 min</span><span class="arrow">→</span>
+          </div>
+          <div class="incident-row">
+            <span class="date">apr 28 · 2026</span>
+            <div class="title-wrap"><span class="dot no-glow" style="background: var(--ok);"></span><span class="title-text">I finally understand conditional access</span></div>
+            <span class="tag">m365</span><span class="read">9 min</span><span class="arrow">→</span>
+          </div>
+          <div class="incident-row">
+            <span class="date">apr 09 · 2026</span>
+            <div class="title-wrap"><span class="dot no-glow" style="background: var(--ok);"></span><span class="title-text">Running Whisper on a home lab without losing your weekend</span></div>
+            <span class="tag">ai</span><span class="read">7 min</span><span class="arrow">→</span>
+          </div>
+          <div class="incident-row">
+            <span class="date">mar 22 · 2026</span>
+            <div class="title-wrap"><span class="dot no-glow" style="background: var(--ok);"></span><span class="title-text">A small Entra audit script that pays for itself</span></div>
+            <span class="tag">m365</span><span class="read">5 min</span><span class="arrow">→</span>
+          </div>
+          <div class="incident-row">
+            <span class="date">mar 04 · 2026</span>
+            <div class="title-wrap"><span class="dot no-glow" style="background: var(--ok);"></span><span class="title-text">Local LLMs vs. cloud LLMs — a practitioner's scorecard</span></div>
+            <span class="tag">ai</span><span class="read">8 min</span><span class="arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="now">
+        <div class="section-title">
+          <span class="num">§ 06</span>
+          <h2>/now</h2>
+        </div>
+        <div class="now-card">
+          <div class="head">
+            <span class="eyebrow">last update · 2 days ago</span>
+            <span class="place">brooklyn, ny</span>
+          </div>
+          <div class="now-row"><span class="tag" style="color: var(--accent);">working on</span><div class="body">Agent workflows on Claude + Copilot Studio for a real M365 estate.</div></div>
+          <div class="now-row"><span class="tag" style="color: var(--blue);">running</span><div class="body">A two-PC home lab — Ollama + Docker + a Whisper-to-markdown pipeline.</div></div>
+          <div class="now-row"><span class="tag" style="color: var(--ok);">studying</span><div class="body">Claude Certified Architect. Eight years in M365 weren't enough.</div></div>
+          <div class="now-row"><span class="tag" style="color: var(--violet);">reading</span><div class="body">"Designing Data-Intensive Applications" (3rd time, still good).</div></div>
+          <div class="now-row"><span class="tag" style="color: var(--warn);">watching</span><div class="body">Anything with Jackie Chan in it. The rule never changes.</div></div>
+        </div>
+      </div>
     </section>
-  </body>
+
+    <!-- ─── JACKIE CHAN CARD ─── -->
+    <section class="section">
+      <div class="jc-card">
+        <div class="big-quote">”</div>
+        <div class="jc-avatar">🥋</div>
+        <div style="position: relative;">
+          <div class="eyebrow" style="margin-bottom: 10px;">§ 07 · jackie chan corner · health-check passed</div>
+          <div class="jc-quote">"Do not let the behavior of others destroy your inner peace."</div>
+          <div class="jc-meta"><span class="mono">— jc · refreshed daily · <a class="roll" href="#">roll again</a></span></div>
+        </div>
+        <div class="jc-health">
+          <span class="dot"></span>
+          <span class="ok-label">200 OK</span>
+          <span class="ms">14ms</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+      <div class="brand">
+        <span class="mono">yargic.cloud</span>
+        <div class="blurb">Set in Fraunces &amp; JetBrains Mono. Hosted on Azure Static Web Apps. RSS at <span class="ink">/feed.xml</span>. No analytics.</div>
+      </div>
+      <div class="col">
+        <span class="eyebrow">Site</span>
+        <div class="link">about →</div>
+        <div class="link">projects →</div>
+        <div class="link">writing →</div>
+        <div class="link">now →</div>
+      </div>
+      <div class="col">
+        <span class="eyebrow">Find me</span>
+        <div class="link">github →</div>
+        <div class="link">mastodon →</div>
+        <div class="link">linkedin →</div>
+        <a class="link" href="mailto:ken@yargic.cloud">email →</a>
+      </div>
+      <div class="col">
+        <span class="eyebrow">Source</span>
+        <div class="link">this site →</div>
+        <div class="link">colophon →</div>
+        <div class="link">/uses →</div>
+        <div class="link">license →</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Generate uptime sparklines from seed (matches the design's deterministic pattern)
+    (function () {
+      var OK = '#62d4a8', WARN = '#f7c948', FAIL = '#ef6b5b';
+      var cells = 90;
+      document.querySelectorAll('.spark').forEach(function (el) {
+        var sev = el.dataset.sev;
+        var seed = parseFloat(el.dataset.seed);
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < cells; i++) {
+          var r = (Math.sin(seed * 7.3 + i * 1.9) + 1) / 2;
+          var c = OK;
+          if (sev === 'warn' && i > cells - 8 && r > 0.5) c = WARN;
+          else if (sev === 'fail' && i === cells - 5) c = FAIL;
+          else if (sev === 'fail' && i > cells - 5 && r > 0.5) c = FAIL;
+          else if (r < 0.03) c = WARN;
+          var bar = document.createElement('div');
+          bar.style.background = c;
+          frag.appendChild(bar);
+        }
+        el.appendChild(frag);
+      });
+    })();
+  </script>
+</body>
 </html>
