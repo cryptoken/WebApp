@@ -413,7 +413,7 @@
       <div class="right">
         <a class="nav-link" href="#about">/about</a>
         <a class="nav-link" href="#projects">/projects</a>
-        <a class="nav-link" href="#writing">/writing</a>
+        <a class="nav-link" href="#videos">/videos</a>
         <a class="nav-link" href="#now">/now</a>
         <div class="search-box">
           <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true">
@@ -555,132 +555,42 @@
       </div>
     </section>
 
-    <!-- ─── SERVICES ─── -->
-    <section class="section">
-      <div class="section-title">
-        <span class="num">§ 02</span>
-        <h2>Services</h2>
-        <span class="sub">// the pages of this site, as a status board</span>
-      </div>
-
-      <div class="services">
-        <div class="row head">
-          <span class="eyebrow">endpoint</span>
-          <span class="eyebrow">uptime · 90d</span>
-          <span class="eyebrow" style="text-align:right;">availability</span>
-          <span class="eyebrow" style="text-align:right;">status</span>
-          <span></span>
-        </div>
-        <div class="row" data-svc='{"sev":"ok","seed":3}'>
-          <div class="endpoint"><div class="name">/about</div><div class="desc">who I am, the short version</div></div>
-          <div class="spark-cell"><div class="spark" data-sev="ok" data-seed="3"></div></div>
-          <div class="avail">100.00%</div>
-          <div class="status" style="color: var(--ok);"><span class="dot" style="background: var(--ok);"></span><span>operational</span></div>
-          <div class="arrow">→</div>
-        </div>
-        <div class="row" data-svc='{"sev":"ok","seed":5}'>
-          <div class="endpoint"><div class="name">/projects</div><div class="desc">14 things, mostly cloud</div></div>
-          <div class="spark-cell"><div class="spark" data-sev="ok" data-seed="5"></div></div>
-          <div class="avail">99.96%</div>
-          <div class="status" style="color: var(--ok);"><span class="dot" style="background: var(--ok);"></span><span>operational</span></div>
-          <div class="arrow">→</div>
-        </div>
-        <div class="row" data-svc='{"sev":"warn","seed":7}'>
-          <div class="endpoint"><div class="name">/writing</div><div class="desc">42 posts · RSS feed</div></div>
-          <div class="spark-cell"><div class="spark" data-sev="warn" data-seed="7"></div></div>
-          <div class="avail">98.41%</div>
-          <div class="status" style="color: var(--warn);"><span class="dot" style="background: var(--warn); box-shadow: 0 0 14px var(--warn);"></span><span>degraded</span></div>
-          <div class="arrow">→</div>
-        </div>
-        <div class="row" data-svc='{"sev":"ok","seed":11}'>
-          <div class="endpoint"><div class="name">/now</div><div class="desc">auto-deploys weekly-ish</div></div>
-          <div class="spark-cell"><div class="spark" data-sev="ok" data-seed="11"></div></div>
-          <div class="avail">99.99%</div>
-          <div class="status" style="color: var(--ok);"><span class="dot" style="background: var(--ok);"></span><span>operational</span></div>
-          <div class="arrow">→</div>
-        </div>
-        <div class="row" data-svc='{"sev":"ok","seed":13}'>
-          <div class="endpoint"><div class="name">/jackie-chan-corner</div><div class="desc">critical-tier service</div></div>
-          <div class="spark-cell"><div class="spark" data-sev="ok" data-seed="13"></div></div>
-          <div class="avail">100.00%</div>
-          <div class="status" style="color: var(--ok);"><span class="dot" style="background: var(--ok);"></span><span>operational</span></div>
-          <div class="arrow">→</div>
-        </div>
-      </div>
-    </section>
-
     <!-- ─── PROJECTS ─── -->
     <section class="section" id="projects">
       <div class="section-title">
-        <span class="num">§ 03</span>
+        <span class="num">§ 02</span>
         <h2>Selected projects</h2>
-        <span class="sub">// cmd-K to see all</span>
+        <span class="sub">// three, all real</span>
       </div>
       <div class="projects-grid">
         <article class="project featured">
           <div class="head">
-            <div class="name-wrap"><span class="dot" style="background: var(--accent); box-shadow: 0 0 14px var(--accent);"></span><span class="name">local-ai-lab</span></div>
-            <span class="status-pill">active · 2025</span>
+            <div class="name-wrap"><span class="dot" style="background: var(--accent); box-shadow: 0 0 14px var(--accent);"></span><span class="name">multi-agent-content-pipeline</span></div>
+            <span class="status-pill">shipped · 2025</span>
           </div>
-          <div class="desc">Two-PC home setup running Ollama and Docker, with a Whisper transcription pipeline that turns video into structured markdown.</div>
+          <div class="desc">Five-agent system on Claude — Orchestrator, Trend Scout, Researcher, Writer, Editor. Firecrawl tool-use, SQLite topic memory, Jinja templates.</div>
           <div class="stack">
-            <span class="pill">ollama</span><span class="pill">docker</span><span class="pill">whisper</span><span class="pill">python</span>
-            <a class="repo" href="#">repo →</a>
+            <span class="pill">claude</span><span class="pill">python</span><span class="pill">firecrawl</span>
           </div>
         </article>
         <article class="project">
           <div class="head">
-            <div class="name-wrap"><span class="dot" style="background: var(--ok);"></span><span class="name">video-to-md</span></div>
-            <span class="status-pill">shipped</span>
+            <div class="name-wrap"><span class="dot" style="background: var(--ok);"></span><span class="name">whisper-transcript-pipeline</span></div>
+            <span class="status-pill">shipped · 2025</span>
           </div>
-          <div class="desc">Drop in an mp4, get back clean structured markdown with chapter headings and speaker turns. The lab's flagship pipeline.</div>
+          <div class="desc">Local Whisper pipeline. Drop in a video, get structured markdown. Runs on the home lab, no cloud.</div>
           <div class="stack">
             <span class="pill">whisper</span><span class="pill">python</span><span class="pill">ffmpeg</span>
-            <a class="repo" href="#">repo →</a>
           </div>
         </article>
         <article class="project">
           <div class="head">
-            <div class="name-wrap"><span class="dot" style="background: var(--warn); box-shadow: 0 0 14px var(--warn);"></span><span class="name">agent-router</span></div>
-            <span class="status-pill">beta</span>
+            <div class="name-wrap"><span class="dot" style="background: var(--ok);"></span><span class="name">local-ai-lab</span></div>
+            <span class="status-pill">active · 2025</span>
           </div>
-          <div class="desc">A small orchestration layer that picks between Claude and Copilot Studio agents based on tool affinity and cost.</div>
+          <div class="desc">Two-PC home setup: Ollama, Docker, multi-model. Where the experiments live.</div>
           <div class="stack">
-            <span class="pill">claude</span><span class="pill">copilot-studio</span><span class="pill">ts</span>
-            <a class="repo" href="#">repo →</a>
-          </div>
-        </article>
-        <article class="project">
-          <div class="head">
-            <div class="name-wrap"><span class="dot" style="background: var(--ok);"></span><span class="name">m365-toolkit</span></div>
-            <span class="status-pill">shipped</span>
-          </div>
-          <div class="desc">Day-to-day scripts for the M365 estate — Entra audits, Intune policy diffs, SharePoint cleanups. Boring, useful.</div>
-          <div class="stack">
-            <span class="pill">powershell</span><span class="pill">graph-api</span>
-            <a class="repo" href="#">repo →</a>
-          </div>
-        </article>
-        <article class="project">
-          <div class="head">
-            <div class="name-wrap"><span class="dot" style="background: var(--ok);"></span><span class="name">entra-audit</span></div>
-            <span class="status-pill">shipped</span>
-          </div>
-          <div class="desc">Pulls conditional-access policies + role assignments into a readable diff so audit week stops being a panic.</div>
-          <div class="stack">
-            <span class="pill">python</span><span class="pill">graph-api</span>
-            <a class="repo" href="#">repo →</a>
-          </div>
-        </article>
-        <article class="project">
-          <div class="head">
-            <div class="name-wrap"><span class="dot" style="background: var(--ok);"></span><span class="name">jc-bot</span></div>
-            <span class="status-pill">shipped</span>
-          </div>
-          <div class="desc">A bot that posts a random Jackie Chan quote every morning. Critical infra.</div>
-          <div class="stack">
-            <span class="pill">python</span><span class="pill">cron</span>
-            <a class="repo" href="#">repo →</a>
+            <span class="pill">ollama</span><span class="pill">docker</span>
           </div>
         </article>
       </div>
@@ -718,59 +628,22 @@
       </div>
     </section>
 
-    <!-- ─── INCIDENT LOG + /NOW ─── -->
-    <section class="section split" id="writing">
-      <div>
-        <div class="section-title">
-          <span class="num">§ 05</span>
-          <h2>Incident log</h2>
-          <span class="sub">// a.k.a. blog · RSS</span>
-        </div>
-        <div>
-          <div class="incident-row">
-            <span class="date">may 12 · 2026</span>
-            <div class="title-wrap"><span class="dot no-glow" style="background: var(--warn);"></span><span class="title-text">Building agents inside Copilot Studio: what bends, what breaks</span></div>
-            <span class="tag">ai</span><span class="read">11 min</span><span class="arrow">→</span>
-          </div>
-          <div class="incident-row">
-            <span class="date">apr 28 · 2026</span>
-            <div class="title-wrap"><span class="dot no-glow" style="background: var(--ok);"></span><span class="title-text">I finally understand conditional access</span></div>
-            <span class="tag">m365</span><span class="read">9 min</span><span class="arrow">→</span>
-          </div>
-          <div class="incident-row">
-            <span class="date">apr 09 · 2026</span>
-            <div class="title-wrap"><span class="dot no-glow" style="background: var(--ok);"></span><span class="title-text">Running Whisper on a home lab without losing your weekend</span></div>
-            <span class="tag">ai</span><span class="read">7 min</span><span class="arrow">→</span>
-          </div>
-          <div class="incident-row">
-            <span class="date">mar 22 · 2026</span>
-            <div class="title-wrap"><span class="dot no-glow" style="background: var(--ok);"></span><span class="title-text">A small Entra audit script that pays for itself</span></div>
-            <span class="tag">m365</span><span class="read">5 min</span><span class="arrow">→</span>
-          </div>
-          <div class="incident-row">
-            <span class="date">mar 04 · 2026</span>
-            <div class="title-wrap"><span class="dot no-glow" style="background: var(--ok);"></span><span class="title-text">Local LLMs vs. cloud LLMs — a practitioner's scorecard</span></div>
-            <span class="tag">ai</span><span class="read">8 min</span><span class="arrow">→</span>
-          </div>
-        </div>
+    <!-- ─── /NOW ─── -->
+    <section class="section" id="now">
+      <div class="section-title">
+        <span class="num">§ 04</span>
+        <h2>/now</h2>
       </div>
-
-      <div id="now">
-        <div class="section-title">
-          <span class="num">§ 06</span>
-          <h2>/now</h2>
+      <div class="now-card" style="max-width: 720px;">
+        <div class="head">
+          <span class="eyebrow">last update · 2 days ago</span>
+          <span class="place">bolingbrook, il</span>
         </div>
-        <div class="now-card">
-          <div class="head">
-            <span class="eyebrow">last update · 2 days ago</span>
-            <span class="place">brooklyn, ny</span>
-          </div>
-          <div class="now-row"><span class="tag" style="color: var(--accent);">working on</span><div class="body">Agent workflows on Claude + Copilot Studio for a real M365 estate.</div></div>
-          <div class="now-row"><span class="tag" style="color: var(--blue);">running</span><div class="body">A two-PC home lab — Ollama + Docker + a Whisper-to-markdown pipeline.</div></div>
-          <div class="now-row"><span class="tag" style="color: var(--ok);">studying</span><div class="body">Claude Certified Architect. Eight years in M365 weren't enough.</div></div>
-          <div class="now-row"><span class="tag" style="color: var(--violet);">reading</span><div class="body">"Designing Data-Intensive Applications" (3rd time, still good).</div></div>
-          <div class="now-row"><span class="tag" style="color: var(--warn);">watching</span><div class="body">Anything with Jackie Chan in it. The rule never changes.</div></div>
-        </div>
+        <div class="now-row"><span class="tag" style="color: var(--accent);">working on</span><div class="body">Agent workflows on Claude + Copilot Studio for a real M365 estate.</div></div>
+        <div class="now-row"><span class="tag" style="color: var(--blue);">running</span><div class="body">A two-PC home lab — Ollama + Docker + a Whisper-to-markdown pipeline.</div></div>
+        <div class="now-row"><span class="tag" style="color: var(--ok);">studying</span><div class="body">Claude Certified Architect. Eight years in M365 weren't enough.</div></div>
+        <div class="now-row"><span class="tag" style="color: var(--violet);">reading</span><div class="body">"Designing Data-Intensive Applications" (3rd time, still good).</div></div>
+        <div class="now-row"><span class="tag" style="color: var(--warn);">watching</span><div class="body">Anything with Jackie Chan in it. The rule never changes.</div></div>
       </div>
     </section>
 
@@ -780,9 +653,9 @@
         <div class="big-quote">”</div>
         <div class="jc-avatar">🥋</div>
         <div style="position: relative;">
-          <div class="eyebrow" style="margin-bottom: 10px;">§ 07 · jackie chan corner · health-check passed</div>
+          <div class="eyebrow" style="margin-bottom: 10px;">§ 05 · jackie chan corner · health-check passed</div>
           <div class="jc-quote">"Do not let the behavior of others destroy your inner peace."</div>
-          <div class="jc-meta"><span class="mono">— jc · refreshed daily · <a class="roll" href="#">roll again</a></span></div>
+          <div class="jc-meta"><span class="mono">— jc</span></div>
         </div>
         <div class="jc-health">
           <span class="dot"></span>
