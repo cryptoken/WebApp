@@ -354,7 +354,7 @@
     footer {
       position: relative; padding: 40px 56px 48px;
       border-top: 1px solid var(--border);
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px;
     }
     footer .brand .mono { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink); font-weight: 600; }
     footer .brand .blurb { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.5; max-width: 360px; }
@@ -413,7 +413,6 @@
       <div class="right">
         <a class="nav-link" href="#about">/about</a>
         <a class="nav-link" href="#projects">/projects</a>
-        <a class="nav-link" href="#videos">/videos</a>
         <a class="nav-link" href="#now">/now</a>
         <div class="search-box">
           <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true">
@@ -595,42 +594,10 @@
       </div>
     </section>
 
-    <!-- ─── VIDEOS ─── -->
-    <section class="section" id="videos">
-      <div class="section-title">
-        <span class="num">§ 04</span>
-        <h2>Videos</h2>
-        <span class="sub">// recordings &amp; demos</span>
-      </div>
-      <div class="videos-grid">
-        <div class="video-card">
-          <div class="video-frame">
-            <iframe src="https://www.youtube.com/embed/pjv8VCvHS7g" title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-        </div>
-        <div class="video-card">
-          <div class="video-frame">
-            <iframe src="https://www.youtube.com/embed/9AkiOpIGp5Y" title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-        </div>
-        <div class="video-card">
-          <div class="video-frame">
-            <iframe src="https://www.youtube.com/embed/Gya0hZYPA1k" title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ─── /NOW ─── -->
     <section class="section" id="now">
       <div class="section-title">
-        <span class="num">§ 04</span>
+        <span class="num">§ 03</span>
         <h2>/now</h2>
       </div>
       <div class="now-card" style="max-width: 720px;">
@@ -652,7 +619,7 @@
         <div class="big-quote">”</div>
         <div class="jc-avatar">🥋</div>
         <div style="position: relative;">
-          <div class="eyebrow" style="margin-bottom: 10px;">§ 05 · jackie chan corner · health-check passed</div>
+          <div class="eyebrow" style="margin-bottom: 10px;">§ 04 · jackie chan corner · health-check passed</div>
           <div class="jc-quote">"Do not let the behavior of others destroy your inner peace."</div>
           <div class="jc-meta"><span class="mono">— jc</span></div>
         </div>
@@ -668,28 +635,18 @@
     <footer>
       <div class="brand">
         <span class="mono">yargic.cloud</span>
-        <div class="blurb">Set in Fraunces &amp; JetBrains Mono. Hosted on Azure Static Web Apps. RSS at <span class="ink">/feed.xml</span>. No analytics.</div>
+        <div class="blurb">Set in Fraunces &amp; JetBrains Mono. No analytics.</div>
       </div>
       <div class="col">
         <span class="eyebrow">Site</span>
-        <div class="link">about →</div>
-        <div class="link">projects →</div>
-        <div class="link">writing →</div>
-        <div class="link">now →</div>
+        <a class="link" href="#about">about →</a>
+        <a class="link" href="#projects">projects →</a>
+        <a class="link" href="#now">now →</a>
       </div>
       <div class="col">
         <span class="eyebrow">Find me</span>
-        <div class="link">github →</div>
-        <div class="link">mastodon →</div>
-        <div class="link">linkedin →</div>
+        <a class="link" href="https://github.yargic.cloud" target="_blank" rel="noopener">github →</a>
         <a class="link" href="mailto:ken@yargic.cloud">email →</a>
-      </div>
-      <div class="col">
-        <span class="eyebrow">Source</span>
-        <div class="link">this site →</div>
-        <div class="link">colophon →</div>
-        <div class="link">/uses →</div>
-        <div class="link">license →</div>
       </div>
     </footer>
   </main>
